@@ -1,0 +1,8 @@
+const products = Array.from({ length: 8 }, (_, i) => ({
+  id: i + 1,
+  name: 'Capa de silicone para iPhone 8/7 cor Areia - rosa',
+  price: 299,
+  image: `/produtos/produto-0${i + 1}.jpeg`
+}));
+
+export default products;
