@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Grid,
@@ -8,37 +9,48 @@ import {
   Button
 } from '@mui/material';
 
-export default function FormularioCliente({ total }){
+export default function FormularioCliente({ total }) {
+  const navigate = useNavigate();
+
   const [dados, setDados] = useState({
     nome: '',
     email: '',
     sexo: ''
   });
 
+  const [erros, setErros] = useState({});
+
   const handleChange = (e) => {
-    setDados({
-      ...dados,
-      [e.target.name]: e.target.value
+    setDados({ ...dados, [e.target.name]: e.target.value });
+  };
+
+  const validar = () => {
+    const novosErros = {};
+
+    if (!dados.nome) novosErros.nome = 'Nome obrigatório';
+    if (!dados.email.includes('@')) novosErros.email = 'Email inválido';
+    if (!dados.sexo) novosErros.sexo = 'Selecione o sexo';
+
+    setErros(novosErros);
+    return Object.keys(novosErros).length === 0;
+  };
+
+  const finalizarCompra = () => {
+    if (!validar()) return;
+
+    navigate('/finalizacao', {
+      state: {
+        nome: dados.nome,
+        total
+      }
     });
   };
 
   return (
-    <Box
-      sx={{
-        mt: 6,
-        p: 4,
-        borderRadius: 2,
-        boxShadow: 3,
-        backgroundColor: '#fff'
-      }}
-    >
+    <Box sx={{ mt: 6, p: 4, borderRadius: 2, boxShadow: 3 }}>
       <Grid container spacing={4}>
-        {/* ESQUERDA - DADOS DO CLIENTE */}
         <Grid item xs={12} md={8}>
-          <Typography
-            variant="h6"
-            sx={{ mb: 3, fontWeight: 'bold', color: '#546e7a' }}
-          >
+          <Typography variant="h6" sx={{ mb: 3 }}>
             Dados do Cliente
           </Typography>
 
@@ -48,11 +60,10 @@ export default function FormularioCliente({ total }){
                 fullWidth
                 label="Nome"
                 name="nome"
-                placeholder="Nome do cliente aqui"
                 value={dados.nome}
                 onChange={handleChange}
-                error={!dados.nome}
-                helperText={!dados.nome ? 'Campo obrigatório' : ''}
+                error={!!erros.nome}
+                helperText={erros.nome}
               />
             </Grid>
 
@@ -61,20 +72,23 @@ export default function FormularioCliente({ total }){
                 fullWidth
                 label="Email"
                 name="email"
-                placeholder="Digite seu email aqui"
                 value={dados.email}
                 onChange={handleChange}
+                error={!!erros.email}
+                helperText={erros.email}
               />
             </Grid>
 
             <Grid item xs={12} md={3}>
               <TextField
-                fullWidth
                 select
+                fullWidth
                 label="Sexo"
                 name="sexo"
                 value={dados.sexo}
                 onChange={handleChange}
+                error={!!erros.sexo}
+                helperText={erros.sexo}
               >
                 <MenuItem value="">Selecione</MenuItem>
                 <MenuItem value="masculino">Masculino</MenuItem>
@@ -85,34 +99,14 @@ export default function FormularioCliente({ total }){
           </Grid>
         </Grid>
 
-        {/* DIREITA - TOTAL */}
-        <Grid
-          item
-          xs={12}
-          md={4}
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-end',
-            alignItems: 'flex-end'
-          }}
-        >
+        <Grid item xs={12} md={4} textAlign="right">
           <Typography variant="h6" sx={{ mb: 2 }}>
-  Total:{' '}
-  <strong>R$ {total.toFixed(2)}</strong>
-</Typography>
+            Total: <strong>R$ {total.toFixed(2)}</strong>
+          </Typography>
 
           <Button
             variant="contained"
-            sx={{
-              backgroundColor: '#ff9800',
-              px: 4,
-              py: 1.5,
-              fontWeight: 'bold',
-              '&:hover': {
-                backgroundColor: '#fb8c00'
-              }
-            }}
+            onClick={finalizarCompra}
           >
             FINALIZAR COMPRA
           </Button>
