@@ -1,3 +1,6 @@
+// Aqui á parte de finalização compra ela mostra para o cliente a última etapa com o nome dele, além do valor da compra, ele também serve para confirmar que o pedido foi concluído.
+
+
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Container,

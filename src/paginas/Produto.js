@@ -1,3 +1,5 @@
+// Aqui é a parte mais legal, funciona como o cérebro da loja, pois é ela que realiza os cálculo do dinheiro, veja que temos os valores reais dos produtos com os nomes também 
+
 import { Container, Grid, Typography } from '@mui/material';
 import { useState } from 'react';
 import ProdutoCartao from '../componentes/ProdutoCartao';

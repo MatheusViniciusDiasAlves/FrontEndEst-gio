@@ -1,3 +1,5 @@
+// Essa parte é responsável pelo cartão de cada produto que colocamos na nossa página. 
+
 import { useState } from 'react';
 import {
   Card,

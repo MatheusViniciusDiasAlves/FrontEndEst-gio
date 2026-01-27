@@ -1,3 +1,5 @@
+// Aqui podemos utilizar como um mapa da loja definindo quais páginas devem aparecer dependendo do endereço que eu digitar 
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Produto from "./paginas/Produto";
 import FinalizacaoCompra from "./paginas/FinalizacaoCompra";
