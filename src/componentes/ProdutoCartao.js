@@ -13,10 +13,21 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
-export default function ProdutoCartao({ produto }) {
+export default function ProdutoCartao({ produto, onQuantidadeChange }) {
   const [qtd, setQtd] = useState(0);
   const [aberto, setAberto] = useState(false);
 
+  const aumentar = () => {
+    const novaQtd = qtd + 1;
+    setQtd(novaQtd);
+    onQuantidadeChange(produto, novaQtd);
+  };
+
+  const diminuir = () => {
+    const novaQtd = Math.max(0, qtd - 1);
+    setQtd(novaQtd);
+    onQuantidadeChange(produto, novaQtd);
+  };
   return (
     <Card
       sx={{
@@ -63,17 +74,17 @@ export default function ProdutoCartao({ produto }) {
               sx={{ my: 2 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <IconButton onClick={() => setQtd(Math.max(0, qtd - 1))}>
-                <RemoveIcon />
-              </IconButton>
+              <IconButton onClick={diminuir}>
+  <RemoveIcon />
+</IconButton>
 
-              <Box sx={{ border: '1px solid #ccc', px: 3 }}>
-                {qtd}
-              </Box>
+<Box sx={{ border: '1px solid #ccc', px: 3 }}>
+  {qtd}
+</Box>
 
-              <IconButton onClick={() => setQtd(qtd + 1)}>
-                <AddIcon />
-              </IconButton>
+<IconButton onClick={aumentar}>
+  <AddIcon />
+</IconButton>
             </Stack>
 
             <Button

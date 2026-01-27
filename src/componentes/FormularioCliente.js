@@ -8,7 +8,7 @@ import {
   Button
 } from '@mui/material';
 
-export default function FormularioCliente() {
+export default function FormularioCliente({ total }){
   const [dados, setDados] = useState({
     nome: '',
     email: '',
@@ -98,9 +98,9 @@ export default function FormularioCliente() {
           }}
         >
           <Typography variant="h6" sx={{ mb: 2 }}>
-            Total:{' '}
-            <strong>R$ 299,00</strong>
-          </Typography>
+  Total:{' '}
+  <strong>R$ {total.toFixed(2)}</strong>
+</Typography>
 
           <Button
             variant="contained"
