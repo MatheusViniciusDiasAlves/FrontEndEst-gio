@@ -1,6 +1,6 @@
-# Desafio de Eságio FrontEnd na xBrain Londrina
+# Desafio de Estágio FrontEnd na xBrain Londrina
 
-Olá tudo bem? Me chamo Matheus e esse é o projeto do desafio para desenvolver uma página utilizando o React e outras tecnologias, espero que gostem!! 
+Olá tudo bem? Me chamo Matheus e esse é o projeto do desafio para desenvolver uma loja utilizando o React e outras tecnologias, espero que gostem!! 
 
 
 ## 🚀 Tecnologias Utilizadas
