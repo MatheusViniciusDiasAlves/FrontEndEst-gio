@@ -15,6 +15,9 @@ Olá tudo bem? Me chamo Matheus e esse é o projeto do desafio para desenvolver 
 
 ## ⚙️ Como rodar o projeto ? 
 
+Instale o Node.js 
+https://nodejs.org/en
+
 No git Bash:
 git clone https://github.com/MatheusViniciusDiasAlves/FrontEndEst-gio
 
