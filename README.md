@@ -25,6 +25,8 @@ Instale as dependências:
 npm install
 
 Inicie o projeto:
+npm start 
+
 O projeto estará disponível em http://localhost:3000.
 
 ## ⚙️ Para gerar a versão de produção do projeto, utilize:
